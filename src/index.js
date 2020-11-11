@@ -1,62 +1,51 @@
+import apiService from './js/apiService'
 
 
+// console.log(inputSearch);
+
+
+// import inputValue from './js/fech'
+import hend from './handlebars/ulHendel.hbs'
 import './css/style.css'
-import CardTpl from './handlebars/hendel.hbs';
-import CardTplTwo from './handlebars/hendel_copy.hbs'
-import  fetchCountriesFunction  from './js/fetchCountries';
-import '@pnotify/core/dist/BrightTheme.css';
-import { alert, error } from '@pnotify/core';
+// import hendSearch from '../handlebars/hendel.hbs'
+const body = document.querySelector('.gallery');
+const formSearch = document.querySelector('#search-form')
+const inputSearch = formSearch.querySelector('input')
+const btn = document.querySelector('.btn')
 
-const searchForm = document.querySelector('.form-control');
-const form = document.querySelector('.form')
-searchForm.addEventListener('input', _.debounce(fetchCountrie, 500));
+// let page = 1;
+let search = '';
 
-
-
-
-function fetchCountrie() {    
-    fetchCountriesFunction(searchForm.value).then(renderCard)
-    .catch(onFetchError);
-}
+apiService.resetPage()
 
 
+inputSearch.addEventListener('input', e)
 
-
-function renderCard(countrie) {
-  console.log(countrie.length)
-  form.innerHTML = ''
-  const markup = CardTpl(countrie);
-  const markupTwo = CardTplTwo(countrie);
-  if (countrie.length === 1) { form.insertAdjacentHTML('beforeend', markup); }
-  else {
-    form.insertAdjacentHTML('beforeend', markupTwo);
-    if (countrie.length > 10) {
-        form.innerHTML = ''
-      const myNotice = error({
-        delay: 1000,
-        hide: true,
-        sticker: false,
-          text: "Too many matches found. Pleas enter a more specific query"});
-        
-    }
-    else if (countrie.length < 10) { console.log('l') }      
+function e() {
+//    search = inputSearch.value
   
-  }
-    
-        
+    body.innerHTML = ''
+
+    apiService.inputValue(search).then(e => {
+        renderCard(e.hits)
+       
+    });
 }
-    
 
 
-function onFetchError() {
-  form.innerHTML = ''
-  // const myAlert = alert({
-  //   text: "Enter country name",
-  //   type: 'info',
-  //   hide: 'true',
-  //   delay: '100'
-  // });
+
+function renderCard(resul) {
+  // body.innerHTML = ''
+  const markup = hend(resul);
+  body.insertAdjacentHTML('beforeend', markup);
 }
+
+btn.addEventListener('click', () => {
+  apiService.inputValue(search).then(e => {
+    renderCard(e.hits)
+    
+  });
+})
 
 
 
