@@ -1,3 +1,4 @@
+import './js/lazy'
 import apiService from './js/apiService'
 import hend from './handlebars/ulHendel.hbs'
 import './css/style.css'
@@ -16,9 +17,9 @@ console.log(clientHeight);
 // scrollTo(0, clientHeight)
 
 
-inputSearch.addEventListener('input', e)
+inputSearch.addEventListener('input',_.debounce(inputSearchValue, 1000));
 
-function e() {
+function inputSearchValue() {
 
     console.log(inputSearch.value); 
     body.innerHTML = ''
