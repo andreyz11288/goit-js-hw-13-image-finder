@@ -8,8 +8,12 @@ const formSearch = document.querySelector('#search-form')
 const inputSearch = formSearch.querySelector('input')
 const btn = document.querySelector('.btn')
 
+let clientHeight = document.documentElement.clientHeight
 
+  
 
+console.log(clientHeight);
+// scrollTo(0, clientHeight)
 
 
 inputSearch.addEventListener('input', e)
@@ -34,9 +38,10 @@ function renderCard(resul) {
 btn.addEventListener('click', () => {
   apiService.inputValue(inputSearch.value ).then(e => {
     renderCard(e.hits)
-    
+    scrollTo(0, (clientHeight + pageYOffset))
+   
+
   });
 })
-
 
 
