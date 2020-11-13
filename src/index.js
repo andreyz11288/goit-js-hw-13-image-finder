@@ -1,54 +1,30 @@
 import './js/lazy'
-import apiService from './js/apiService'
-import hend from './handlebars/ulHendel.hbs'
+
+import inputSearchValue from './js/input'
+
+import btnClick from './js/btn'
+
 import './css/style.css'
+import refs from './js/refs'
 
 
 
-const body = document.querySelector('.gallery');
-const formSearch = document.querySelector('#search-form')
-const inputSearch = formSearch.querySelector('input')
-const btn = document.querySelector('.btn')
-const spinner = document.querySelector('#loader')
+refs.inputSearch.addEventListener('input',_.debounce(inputSearchValue, 1000));
 
-const clientHeight = document.documentElement.clientHeight
-
-
-
-inputSearch.addEventListener('input',_.debounce(inputSearchValue, 1000));
+refs.btn.addEventListener('click', btnClick)
 
 
 // Ввод текста в Инпут
+// inputSearchValue()
 
-function inputSearchValue() {
-  spinner.classList.add('loader')
-    body.innerHTML = ''
-    apiService.inputValue(inputSearch.value ).then(e => {
-        renderCard(e.hits)
-      btn.classList.remove('none')
-    })
-      .finally(() => {
-      spinner.classList.remove('loader')
-    });
-}
 
 // Рендер разметки и изображений
+// renderCard()
 
-function renderCard(resul) {
-  const markup = hend(resul);
-  body.insertAdjacentHTML('beforeend', markup);
-}
 
 // Клик по кнопке
+// btnClick()
 
-btn.addEventListener('click', () => {
-  spinner.classList.add('loader')
-  apiService.inputValue(inputSearch.value ).then(e => {
-    renderCard(e.hits)
-    scrollTo(0, (clientHeight + pageYOffset))
-  }).finally(() => {
-    spinner.classList.remove('loader')
-    });
-})
+
 
 
