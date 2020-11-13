@@ -90,5 +90,9 @@ body {
   border: 5px solid lightcoral;
   border-radius: 10px;
   background-color: aquamarine;
-  /* border-color: lightcoral; */
+  min-width: 450px;
+}
+
+.photo {
+  max-width: 450px;
 }
