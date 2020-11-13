@@ -3,7 +3,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const paths = require('../utils/paths');
 const debounce = require('lodash.debounce');
- const Lazy = require('lazy');
+const Lazy = require('lazy');
+ const basicLightbox = require('basiclightbox')
 
 module.exports = env => ({
   mode: env.mode,

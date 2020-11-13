@@ -1,24 +1,25 @@
 {{#each this}}
 <li>
     <div class="photo-card">
-        <img loading="lazy" src="{{webformatURL}}" alt="" height="250px" />
+        <img class="photo" loading="lazy" src="{{webformatURL}}" alt="" height="250px" />
+        </form>
 
         <div class="stats">
             <p class="stats-item">
                 <i class="material-icons">thumb_up</i>
-                {{likes}}
+                <span class="icons-span">{{likes}}</span>
             </p>
             <p class="stats-item">
                 <i class="material-icons">visibility</i>
-                {{views}}
+                <span class="icons-span">{{views}}</span>
             </p>
             <p class="stats-item">
                 <i class="material-icons">comment</i>
-                {{comments}}
+                <span class="icons-span">{{comments}}</span>
             </p>
             <p class="stats-item">
                 <i class="material-icons">cloud_download</i>
-                {{downloads}}
+                <span class="icons-span">{{downloads}}</span>
             </p>
         </div>
     </div>
