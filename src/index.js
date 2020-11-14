@@ -3,17 +3,18 @@ import './js/lazy'
 import inputSearchValue from './js/input'
 
 import btnClick from './js/btn'
-import * as basicLightbox from 'basiclightbox'
+// import * as basicLightbox from 'basiclightbox'
 import './css/style.css'
 import './css/main.css'
 import refs from './js/refs'
+import bigImg from './js/bigImg'
 
 
-
-refs.inputSearch.addEventListener('input',_.debounce(inputSearchValue, 1000));
+refs.inputSearch.addEventListener('input', _.debounce(inputSearchValue, 1000));
 
 refs.btn.addEventListener('click', btnClick)
 
+refs.form.addEventListener('click', bigImg)
 
 // Ввод текста в Инпут
 // inputSearchValue()
@@ -26,13 +27,8 @@ refs.btn.addEventListener('click', btnClick)
 // Клик по кнопке
 // btnClick()
 
-const form = document.querySelector('.form')
-form.addEventListener('click', (event) => {
-  // event.defaultPrevented();
-  const dataSrc = event.target.dataset.src;
-  const instance = basicLightbox.create(`
-      <img src="${dataSrc}" width="1200" height="800">
-  `).show()
-})
+
+// Клик по картинке
+// bigImg()
 
 
